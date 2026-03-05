@@ -1,3 +1,4 @@
+"use client";
 const navItems = [
   { key: "tymy", label: "TÝMY", icon: "/icons/tymy.svg" },
   { key: "klub", label: "KLUB", icon: "/icons/klub.svg" },
