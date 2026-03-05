@@ -1,25 +1,26 @@
 const navItems = [
-  { key: "tymy", label: "TÝMY", icon: "/icons/tymy.png" },
-  { key: "klub", label: "KLUB", icon: "/icons/klub.png" },
-  { key: "zpravy", label: "ZPRÁVY", icon: "/icons/zpravy.png" },
-  { key: "vstupenky", label: "VSTUPENKY", icon: "/icons/vstupenky.png" },
-  { key: "archiv", label: "ARCHIV" }, // bez ikony zatím
-  { key: "turnaje", label: "TURNAJE", icon: "/icons/turnaje.png" },
-  { key: "partneri", label: "PARTNEŘI", icon: "/icons/partneri.png" },
-  { key: "projekty", label: "PROJEKTY" }, // bez ikony zatím
+  { key: "tymy", label: "TÝMY", icon: "/icons/tymy.svg" },
+  { key: "klub", label: "KLUB", icon: "/icons/klub.svg" },
+  { key: "zpravy", label: "ZPRÁVY", icon: "/icons/zpravy.svg" },
+  { key: "vstupenky", label: "VSTUPENKY", icon: "/icons/vstupenky.svg" },
+  { key: "archiv", label: "ARCHIV" },
+  { key: "turnaje", label: "TURNAJE", icon: "/icons/turnaje.svg" },
+  { key: "partneri", label: "PARTNEŘI", icon: "/icons/partneri.svg" },
+  { key: "projekty", label: "PROJEKTY" },
 ];
 
-function NavIcon({ src }: { src: string }) {
+function Icon({ src }: { src: string }) {
   return (
     <img
       src={src}
       alt=""
+      width={18}
+      height={18}
       style={{
         width: 18,
         height: 18,
-        objectFit: "contain",
-        opacity: 0.95,
-        // žádný invert – jinak vzniknou bílé čtverce, když PNG není průhledné
+        display: "block",
+        // žádné pozadí, žádné filtry
       }}
     />
   );
@@ -59,7 +60,7 @@ export default function Home() {
           <div
             style={{
               display: "flex",
-              gap: 28,
+              gap: 24,
               fontSize: 13,
               letterSpacing: 1,
               textTransform: "uppercase",
@@ -75,14 +76,23 @@ export default function Home() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: 8,
+                  gap: 10,
                   textDecoration: "none",
                   color: "rgba(255,255,255,0.88)",
-                  padding: "6px 8px",
-                  borderRadius: 10,
+                  padding: "8px 10px",
+                  borderRadius: 12,
+                  transition: "all 120ms ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#bad2ed";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.06)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.88)";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
                 }}
               >
-                {"icon" in item && item.icon ? <NavIcon src={item.icon} /> : null}
+                {"icon" in item && item.icon ? <Icon src={item.icon} /> : null}
                 <span>{item.label}</span>
               </a>
             ))}
@@ -100,6 +110,8 @@ export default function Home() {
           color: "rgba(255,255,255,0.22)",
           textTransform: "uppercase",
           letterSpacing: 2,
+          padding: 24,
+          textAlign: "center",
         }}
       >
         VELKÉ VIDEO
