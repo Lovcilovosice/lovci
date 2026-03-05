@@ -142,3 +142,58 @@ Statistika hráčů:
 ## Poznámky
 - Vše držet jednoduché, rychlé, bez těžkých knihoven.
 - První verze = statické placeholdery, pak napojení na API svazu + CMS.
+
+---
+
+## Mobilní verze (priority)
+Cíl: aby homepage byla čitelná a rychlá na telefonu (většina návštěv).
+
+### Breakpointy
+- mobile: < 768px
+- tablet: 768–1024px
+- desktop: > 1024px
+
+### Header
+- Horní lišta:
+  - vlevo logo + text (menší)
+  - vpravo jen 2–3 ikonky (FB/IG/YT)
+- Menu:
+  - místo dlouhé lišty použít hamburger (☰)
+  - po kliknutí vysune panel s položkami menu (vertikálně)
+  - ikony zůstanou u položek
+
+### Hero video
+- výška cca 280–340px
+- video stále muted/loop
+- overlay silnější pro kontrast
+- text/CTA větší, aby šel kliknout
+
+### Sekce článků
+- místo layoutu 1+3:
+  - 1 velká karta
+  - pod ní 3 malé karty pod sebou (stack)
+- mezery větší, aby se dalo scrollovat pohodlně
+
+### Match bar
+- přepnout do “karty”:
+  - řádek 1: týmy (zkrácené názvy)
+  - řádek 2: datum + čas
+- loga menší
+
+### Tabulka + statistiky
+- z 2 sloupců na 1 sloupec:
+  - nejdřív “Příští zápas”
+  - pak tabulka (zkrácená, možnost „zobrazit více“)
+  - pak top hráči (karty)
+
+### Lovci TV
+- video embed přes celou šířku
+- pod tím titulek
+
+### CTA bloky
+- tlačítka pod sebou (stack), velké a snadno klikatelné
+
+### Footer
+- partneři v mřížce 2–3 sloupce
+- menší padding, ale dost prostoru pro klik
+
