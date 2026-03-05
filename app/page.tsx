@@ -3,14 +3,13 @@ const navItems = [
   { key: "klub", label: "KLUB", icon: "/icons/klub.png" },
   { key: "zpravy", label: "ZPRÁVY", icon: "/icons/zpravy.png" },
   { key: "vstupenky", label: "VSTUPENKY", icon: "/icons/vstupenky.png" },
-  { key: "archiv", label: "ARCHIV", icon: "/icons/archiv.png" }, // pokud není, nevadí (fallback)
+  { key: "archiv", label: "ARCHIV" }, // bez ikony zatím
   { key: "turnaje", label: "TURNAJE", icon: "/icons/turnaje.png" },
   { key: "partneri", label: "PARTNEŘI", icon: "/icons/partneri.png" },
-  { key: "projekty", label: "PROJEKTY", icon: "/icons/projekty.png" }, // pokud není, nevadí (fallback)
+  { key: "projekty", label: "PROJEKTY" }, // bez ikony zatím
 ];
 
 function NavIcon({ src }: { src: string }) {
-  // Fallback: pokud soubor neexistuje, prohlížeč zobrazí jen prázdno – nebudeme to řešit JSem.
   return (
     <img
       src={src}
@@ -19,8 +18,8 @@ function NavIcon({ src }: { src: string }) {
         width: 18,
         height: 18,
         objectFit: "contain",
-        filter: "brightness(0) invert(1)",
-        opacity: 0.9,
+        opacity: 0.95,
+        // žádný invert – jinak vzniknou bílé čtverce, když PNG není průhledné
       }}
     />
   );
@@ -38,7 +37,6 @@ export default function Home() {
         fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
       }}
     >
-      {/* HEADER */}
       <header
         style={{
           padding: "18px 28px",
@@ -57,14 +55,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* MENU desktop */}
-        <nav
-          style={{
-            marginTop: 14,
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <nav style={{ marginTop: 14, display: "flex", justifyContent: "center" }}>
           <div
             style={{
               display: "flex",
@@ -80,18 +71,18 @@ export default function Home() {
             {navItems.map((item) => (
               <a
                 key={item.key}
-                href="#"
+                href={`/${item.key}`}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 8,
                   textDecoration: "none",
                   color: "rgba(255,255,255,0.88)",
-                  padding: "6px 6px",
+                  padding: "6px 8px",
                   borderRadius: 10,
                 }}
               >
-                <NavIcon src={item.icon} />
+                {"icon" in item && item.icon ? <NavIcon src={item.icon} /> : null}
                 <span>{item.label}</span>
               </a>
             ))}
@@ -99,7 +90,6 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* HERO */}
       <section
         style={{
           height: 420,
