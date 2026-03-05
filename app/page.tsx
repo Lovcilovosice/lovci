@@ -3,45 +3,78 @@ export default function Home() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#1b1e32",
+        backgroundImage: "url('/images/background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         color: "white",
-        fontFamily: "sans-serif",
+        fontFamily: "sans-serif"
       }}
     >
 
       {/* HEADER */}
       <header
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
           padding: "20px 40px",
-          borderBottom: "1px solid rgba(255,255,255,0.1)"
+          borderBottom: "1px solid rgba(255,255,255,0.2)",
+          background: "rgba(27,30,50,0.85)"
         }}
       >
-        <div style={{fontSize:"24px", color:"#bad2ed", fontWeight:"bold"}}>
-          LOVCI LOVOSICE
+
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between"
+        }}>
+
+          <div style={{
+            fontSize: "32px",
+            fontWeight: "bold",
+            letterSpacing: "1px"
+          }}>
+            LOVCI LOVOSICE
+          </div>
+
+          <div style={{
+            display: "flex",
+            gap: "16px",
+            fontSize: "20px"
+          }}>
+            ○ ○ ○ ○ ○
+          </div>
+
         </div>
 
-        <nav style={{display:"flex", gap:"24px", fontSize:"14px"}}>
+        {/* MENU */}
+        <nav
+          style={{
+            marginTop: "18px",
+            display: "flex",
+            gap: "32px",
+            fontSize: "14px",
+            letterSpacing: "1px"
+          }}
+        >
           <span>TÝMY</span>
           <span>KLUB</span>
           <span>ZPRÁVY</span>
           <span>VSTUPENKY</span>
+          <span>ARCHIV</span>
           <span>TURNAJE</span>
           <span>PARTNEŘI</span>
+          <span>PROJEKTY</span>
         </nav>
+
       </header>
 
-      {/* HERO VIDEO */}
+      {/* HERO */}
       <section
         style={{
-          height:"420px",
-          display:"flex",
-          alignItems:"center",
-          justifyContent:"center",
-          fontSize:"48px",
-          color:"rgba(255,255,255,0.25)"
+          height: "420px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "60px",
+          color: "rgba(255,255,255,0.2)"
         }}
       >
         VELKÉ VIDEO
