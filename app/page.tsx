@@ -47,41 +47,17 @@ function StandingsTable() {
         padding: "40px 20px 60px",
       }}
     >
-      <div
+      <h2
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
+          fontSize: 28,
+          fontWeight: 800,
+          textTransform: "uppercase",
+          letterSpacing: 1,
           marginBottom: 18,
-          flexWrap: "wrap",
         }}
       >
-        <h2
-          style={{
-            margin: 0,
-            fontSize: 28,
-            fontWeight: 800,
-            textTransform: "uppercase",
-            letterSpacing: 1,
-            color: "white",
-          }}
-        >
-          Tabulka extraligy
-        </h2>
-
-        <div
-          style={{
-            color: "#bad2ed",
-            fontSize: 13,
-            textTransform: "uppercase",
-            letterSpacing: 1,
-            fontWeight: 700,
-          }}
-        >
-          Demo data
-        </div>
-      </div>
+        Tabulka extraligy
+      </h2>
 
       <div
         style={{
@@ -89,8 +65,6 @@ function StandingsTable() {
           border: "1px solid rgba(186,210,237,0.22)",
           borderRadius: 18,
           overflow: "hidden",
-          boxShadow: "0 12px 30px rgba(0,0,0,0.22)",
-          backdropFilter: "blur(6px)",
         }}
       >
         <table
@@ -116,7 +90,7 @@ function StandingsTable() {
 
           <tbody>
             {rows.map((row) => {
-              const isLovci = row.team.toLowerCase().includes("lovosice");
+              const isLovci = row.team.includes("Lovosice");
 
               return (
                 <tr
@@ -126,7 +100,7 @@ function StandingsTable() {
                     background: isLovci ? "rgba(186,210,237,0.12)" : "transparent",
                   }}
                 >
-                  <td style={tdStyle}>{row.position}.</td>
+                  <td style={tdStyle}>{row.position}</td>
                   <td style={{ ...tdStyle, textAlign: "left", fontWeight: 700 }}>
                     {row.team}
                   </td>
@@ -176,7 +150,6 @@ export default function Home() {
           borderBottom: "1px solid rgba(255,255,255,0.18)",
           background:
             "linear-gradient(180deg, rgba(27,30,50,0.92), rgba(27,30,50,0.72))",
-          backdropFilter: "blur(6px)",
         }}
       >
         <div
@@ -186,21 +159,11 @@ export default function Home() {
             justifyContent: "space-between",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 14,
-            }}
-          >
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <img
               src="/images/logo-lovci.png"
-              alt="Lovci Lovosice"
-              style={{
-                width: 60,
-                height: 60,
-                objectFit: "contain",
-              }}
+              alt="Lovci"
+              style={{ width: 60, height: 60 }}
             />
 
             <div
@@ -214,8 +177,24 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ display: "flex", gap: 10, fontSize: 14, opacity: 0.8 }}>
-            ○ ○ ○ ○ ○
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <a href="#">f</a>
+            <a href="#">◎</a>
+            <a href="#">▶</a>
+
+            <a
+              href="https://clen.hazenalovosice.cz/v2/sign-in"
+              target="_blank"
+              style={{
+                textDecoration: "none",
+                color: "white",
+                fontWeight: 700,
+              }}
+            >
+              KIS
+            </a>
+
+            <span>⌕</span>
           </div>
         </div>
 
@@ -235,7 +214,6 @@ export default function Home() {
               textTransform: "uppercase",
               alignItems: "center",
               flexWrap: "wrap",
-              justifyContent: "center",
             }}
           >
             {navItems.map((item) => (
@@ -248,20 +226,6 @@ export default function Home() {
                   gap: 10,
                   textDecoration: "none",
                   color: "rgba(255,255,255,0.88)",
-                  padding: "8px 10px",
-                  borderRadius: 12,
-                  transition: "all 120ms ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = "#bad2ed";
-                  (e.currentTarget as HTMLAnchorElement).style.background =
-                    "rgba(255,255,255,0.06)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.color =
-                    "rgba(255,255,255,0.88)";
-                  (e.currentTarget as HTMLAnchorElement).style.background =
-                    "transparent";
                 }}
               >
                 <Icon src={item.icon} />
@@ -281,9 +245,6 @@ export default function Home() {
           fontSize: 60,
           color: "rgba(255,255,255,0.22)",
           textTransform: "uppercase",
-          letterSpacing: 2,
-          padding: 24,
-          textAlign: "center",
         }}
       >
         VELKÉ VIDEO
