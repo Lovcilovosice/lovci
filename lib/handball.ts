@@ -12,19 +12,27 @@ export async function handballLogin(): Promise<string> {
     throw new Error("Chybí HANDBALL_API_USERNAME nebo HANDBALL_API_PASSWORD v .env.local");
   }
 
+  const trimmedUserName = userName.trim();
+  const trimmedPassword = password.trim();
+
   const res = await fetch(`${BASE_URL}/api/partner/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-    body: JSON.stringify({ userName, password }),
+    body: JSON.stringify({
+      userName: trimmedUserName,
+      password: trimmedPassword,
+    }),
     cache: "no-store",
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`Login do API selhal: ${res.status} ${text}`);
+    throw new Error(
+      `Login do API selhal: ${res.status} ${text} | userName=${trimmedUserName}`
+    );
   }
 
   const data = (await res.json()) as LoginResponse;
