@@ -94,7 +94,7 @@ export default function Home() {
               }}
             >
               <img
-                src="/logo-lovci.png"
+                src="/images/logo-lovci.png"
                 alt="Lovci Lovosice"
                 style={{
                   width: 64,
