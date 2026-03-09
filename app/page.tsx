@@ -739,7 +739,7 @@ function StatsBlock() {
       name: "KUPA",
       matches: 20,
       goals: 100,
-      image: "/player-placeholder.png",
+      image: "/images/player-placeholder.png",
     },
     {
       name: "CHOTĚBORSKÝ",
