@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <title>Handball API test</title>
+</head>
+<body>
+  <h1>Login response data:</h1>
+  <pre><code id="login"></code></pre>
+
+  <h1>Competitions response data:</h1>
+  <pre><code id="competitions"></code></pre>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    var token = null;
+
+    function getApiData(url) {
+      jQuery.ajax({
+        url: url,
+        type: "GET",
+        contentType: "application/json",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        success: function (result) {
+          console.log(result);
+          jQuery("#competitions").text(JSON.stringify(result, null, 2));
+        },
+        error: function (error) {
+          console.log(error);
+          jQuery("#competitions").text(JSON.stringify(error, null, 2));
+        },
+      });
+    }
+
+    function login() {
+      let dto = {
+        userName: "jirka.motl+2@gmail.com",
+        password: "kM9ICC1L",
+      };
+
+      jQuery
+        .post(
+          "https://is.handball.cz/api/partner/login",
+          JSON.stringify(dto),
+          function (result) {
+            console.log(result);
+            jQuery("#login").text(JSON.stringify(result, null, 2));
+            token = result.access_token;
+            getApiData("https://is.handball.cz/api/partner/competitions");
+          }
+        )
+        .fail(function (err) {
+          console.log(err);
+          jQuery("#login").text(JSON.stringify(err.responseJSON || err, null, 2));
+        });
+    }
+
+    $(document).ready(function () {
+      $.ajaxSetup({
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      login();
+    });
+  </script>
+</body>
+</html>
