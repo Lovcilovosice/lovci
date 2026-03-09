@@ -575,16 +575,15 @@ export default function Home() {
                 }}
               />
 
-              <div
-                style={{
-                  fontSize: "clamp(22px, 3vw, 30px)",
-                  fontWeight: 900,
-                  letterSpacing: 1,
-                  textTransform: "uppercase",
-                }}
-              >
-                Lovci Lovosice
-              </div>
+<div
+  className="clubFont"
+  style={{
+    fontSize: 30,
+    fontWeight: 800,
+  }}
+>
+  LOVCI LOVOSICE
+</div>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
