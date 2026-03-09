@@ -13,6 +13,21 @@ const navItems = [
   { key: "projekty", label: "PROJEKTY", icon: "/icons/projekty.svg" },
 ];
 
+const lovciTvVideos = [
+  {
+    title: "PO LOVU | Lovci: Talent",
+    url: "https://youtu.be/5iY4F2o8cvo?si=v3Lnnelfy7SCqBwf",
+  },
+  {
+    title: "Sem vložíte další video",
+    url: "https://youtu.be/5iY4F2o8cvo",
+  },
+  {
+    title: "Sem vložíte další video",
+    url: "https://youtu.be/5iY4F2o8cvo",
+  },
+];
+
 function Icon({ src }: { src: string }) {
   return (
     <img
@@ -68,6 +83,7 @@ function SocialLink({
 function SectionTitle({ title }: { title: string }) {
   return (
     <h2
+      className="clubFont"
       style={{
         fontSize: 28,
         fontWeight: 900,
@@ -80,6 +96,28 @@ function SectionTitle({ title }: { title: string }) {
       {title}
     </h2>
   );
+}
+
+function getYouTubeEmbedUrl(url: string) {
+  try {
+    const parsed = new URL(url);
+
+    if (parsed.hostname.includes("youtu.be")) {
+      const videoId = parsed.pathname.replace("/", "");
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    if (parsed.hostname.includes("youtube.com")) {
+      const videoId = parsed.searchParams.get("v");
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+    }
+
+    return "";
+  } catch {
+    return "";
+  }
 }
 
 function HeroSection() {
@@ -210,7 +248,10 @@ function HeroSection() {
             Další zápas
           </div>
 
-          <div className="clubFont" style={{ fontSize: 22, fontWeight: 800, marginBottom: 8 }}>
+          <div
+            className="clubFont"
+            style={{ fontSize: 22, fontWeight: 800, marginBottom: 8 }}
+          >
             Lovci vs. Karviná
           </div>
 
@@ -315,7 +356,15 @@ function NewsSection() {
             Fotka z článku
           </div>
 
-          <div style={{ padding: 22, flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          <div
+            style={{
+              padding: 22,
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
             <div>
               <div
                 style={{
@@ -482,18 +531,126 @@ function MatchBar() {
 
 function StandingsTable() {
   const rows = [
-    { position: 1, team: "HCB Karviná", played: 21, wins: 19, draws: 0, losses: 2, score: "702:543", points: 38 },
-    { position: 2, team: "Talent tým Plzeňského kraje", played: 20, wins: 16, draws: 1, losses: 3, score: "655:530", points: 33 },
-    { position: 3, team: "HC Dukla Praha", played: 21, wins: 15, draws: 1, losses: 5, score: "650:590", points: 31 },
-    { position: 4, team: "HK FCC Město Lovosice", played: 20, wins: 14, draws: 1, losses: 5, score: "620:570", points: 29 },
-    { position: 5, team: "HC ROBE Zubří", played: 20, wins: 12, draws: 2, losses: 6, score: "601:588", points: 26 },
-    { position: 6, team: "SKKP Handball Brno", played: 20, wins: 10, draws: 1, losses: 9, score: "590:600", points: 21 },
-    { position: 7, team: "Frýdek-Místek", played: 20, wins: 8, draws: 2, losses: 10, score: "580:610", points: 18 },
-    { position: 8, team: "Nové Veselí", played: 20, wins: 7, draws: 1, losses: 12, score: "560:615", points: 15 },
-    { position: 9, team: "Maloměřice", played: 20, wins: 6, draws: 1, losses: 13, score: "540:620", points: 13 },
-    { position: 10, team: "Jičín", played: 20, wins: 5, draws: 2, losses: 13, score: "535:625", points: 12 },
-    { position: 11, team: "Brno", played: 20, wins: 4, draws: 1, losses: 15, score: "520:640", points: 9 },
-    { position: 12, team: "Strakonice", played: 20, wins: 3, draws: 0, losses: 17, score: "500:660", points: 6 },
+    {
+      position: 1,
+      team: "HCB Karviná",
+      played: 21,
+      wins: 19,
+      draws: 0,
+      losses: 2,
+      score: "702:543",
+      points: 38,
+    },
+    {
+      position: 2,
+      team: "Talent tým Plzeňského kraje",
+      played: 20,
+      wins: 16,
+      draws: 1,
+      losses: 3,
+      score: "655:530",
+      points: 33,
+    },
+    {
+      position: 3,
+      team: "HC Dukla Praha",
+      played: 21,
+      wins: 15,
+      draws: 1,
+      losses: 5,
+      score: "650:590",
+      points: 31,
+    },
+    {
+      position: 4,
+      team: "HK FCC Město Lovosice",
+      played: 20,
+      wins: 14,
+      draws: 1,
+      losses: 5,
+      score: "620:570",
+      points: 29,
+    },
+    {
+      position: 5,
+      team: "HC ROBE Zubří",
+      played: 20,
+      wins: 12,
+      draws: 2,
+      losses: 6,
+      score: "601:588",
+      points: 26,
+    },
+    {
+      position: 6,
+      team: "SKKP Handball Brno",
+      played: 20,
+      wins: 10,
+      draws: 1,
+      losses: 9,
+      score: "590:600",
+      points: 21,
+    },
+    {
+      position: 7,
+      team: "Frýdek-Místek",
+      played: 20,
+      wins: 8,
+      draws: 2,
+      losses: 10,
+      score: "580:610",
+      points: 18,
+    },
+    {
+      position: 8,
+      team: "Nové Veselí",
+      played: 20,
+      wins: 7,
+      draws: 1,
+      losses: 12,
+      score: "560:615",
+      points: 15,
+    },
+    {
+      position: 9,
+      team: "Maloměřice",
+      played: 20,
+      wins: 6,
+      draws: 1,
+      losses: 13,
+      score: "540:620",
+      points: 13,
+    },
+    {
+      position: 10,
+      team: "Jičín",
+      played: 20,
+      wins: 5,
+      draws: 2,
+      losses: 13,
+      score: "535:625",
+      points: 12,
+    },
+    {
+      position: 11,
+      team: "Brno",
+      played: 20,
+      wins: 4,
+      draws: 1,
+      losses: 15,
+      score: "520:640",
+      points: 9,
+    },
+    {
+      position: 12,
+      team: "Strakonice",
+      played: 20,
+      wins: 3,
+      draws: 0,
+      losses: 17,
+      score: "500:660",
+      points: 6,
+    },
   ];
 
   return (
@@ -542,7 +699,9 @@ function StandingsTable() {
                   key={row.team}
                   style={{
                     borderTop: "1px solid rgba(255,255,255,0.08)",
-                    background: isLovci ? "rgba(186,210,237,0.12)" : "transparent",
+                    background: isLovci
+                      ? "rgba(186,210,237,0.12)"
+                      : "transparent",
                   }}
                 >
                   <td style={tdStyle}>{row.position}</td>
@@ -561,7 +720,9 @@ function StandingsTable() {
                   <td style={tdStyle}>{row.draws}</td>
                   <td style={tdStyle}>{row.losses}</td>
                   <td style={tdStyle}>{row.score}</td>
-                  <td style={{ ...tdStyle, fontWeight: 800 }}>{row.points}</td>
+                  <td style={{ ...tdStyle, fontWeight: 800 }}>
+                    {row.points}
+                  </td>
                 </tr>
               );
             })}
@@ -578,19 +739,19 @@ function StatsBlock() {
       name: "KUPA",
       matches: 20,
       goals: 100,
-      image: "/images/player-placeholder.png",
+      image: "/images/hrac-kupa.png",
     },
     {
       name: "CHOTĚBORSKÝ",
       matches: 20,
       goals: 100,
-      image: "/images/player-placeholder.png",
+      image: "/images/hrac-choteborsky.png",
     },
     {
       name: "HORÁK",
       matches: 20,
       goals: 100,
-      image: "/images/player-placeholder.png",
+      image: "/images/hrac-horak.png",
     },
   ];
 
@@ -692,6 +853,164 @@ function StandingsAndStats() {
       >
         <StandingsTable />
         <StatsBlock />
+      </div>
+    </section>
+  );
+}
+
+function LovciTVSection() {
+  const mainVideo = lovciTvVideos[0];
+  const embedUrl = getYouTubeEmbedUrl(mainVideo.url);
+
+  return (
+    <section
+      style={{
+        maxWidth: 1180,
+        margin: "0 auto",
+        padding: "0 20px 70px",
+      }}
+    >
+      <SectionTitle title="Lovci TV" />
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 2fr) minmax(280px, 1fr)",
+          gap: 24,
+          alignItems: "stretch",
+        }}
+      >
+        <div
+          style={{
+            background: "rgba(10,14,28,0.78)",
+            border: "1px solid rgba(186,210,237,0.22)",
+            borderRadius: 18,
+            overflow: "hidden",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              paddingTop: "56.25%",
+              background: "#000",
+            }}
+          >
+            {embedUrl ? (
+              <iframe
+                src={embedUrl}
+                title={mainVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  border: 0,
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "rgba(255,255,255,0.6)",
+                  fontWeight: 700,
+                }}
+              >
+                Neplatný odkaz na video
+              </div>
+            )}
+          </div>
+
+          <div style={{ padding: 20 }}>
+            <h3
+              className="clubFont"
+              style={{
+                margin: 0,
+                fontSize: 24,
+                lineHeight: 1.2,
+              }}
+            >
+              {mainVideo.title}
+            </h3>
+          </div>
+        </div>
+
+        <div
+          style={{
+            background: "rgba(10,14,28,0.78)",
+            border: "1px solid rgba(186,210,237,0.22)",
+            borderRadius: 18,
+            overflow: "hidden",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
+            padding: 20,
+          }}
+        >
+          <div
+            className="clubFont"
+            style={{
+              fontSize: 18,
+              marginBottom: 16,
+            }}
+          >
+            Další videa
+          </div>
+
+          <div style={{ display: "grid", gap: 12 }}>
+            {lovciTvVideos.map((video, index) => (
+              <a
+                key={`${video.title}-${index}`}
+                href={video.url}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: "block",
+                  padding: 14,
+                  borderRadius: 14,
+                  textDecoration: "none",
+                  color: "white",
+                  background:
+                    index === 0
+                      ? "rgba(186,210,237,0.12)"
+                      : "rgba(255,255,255,0.04)",
+                  border:
+                    index === 0
+                      ? "1px solid rgba(186,210,237,0.28)"
+                      : "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 12,
+                    color: "#bad2ed",
+                    fontWeight: 800,
+                    letterSpacing: 1,
+                    textTransform: "uppercase",
+                    marginBottom: 6,
+                  }}
+                >
+                  Video {index + 1}
+                </div>
+
+                <div
+                  className="clubFont"
+                  style={{
+                    fontSize: 18,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {video.title}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -853,6 +1172,7 @@ export default function Home() {
       <NewsSection />
       <MatchBar />
       <StandingsAndStats />
+      <LovciTVSection />
     </main>
   );
 }
