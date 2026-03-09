@@ -739,19 +739,19 @@ function StatsBlock() {
       name: "KUPA",
       matches: 20,
       goals: 100,
-      image: "/images/hrac-kupa.png",
+      image: "/player-placeholder.png",
     },
     {
       name: "CHOTĚBORSKÝ",
       matches: 20,
       goals: 100,
-      image: "/images/hrac-choteborsky.png",
+      image: "/images/player-placeholder.png",
     },
     {
       name: "HORÁK",
       matches: 20,
       goals: 100,
-      image: "/images/hrac-horak.png",
+      image: "/images/player-placeholder.png",
     },
   ];
 
