@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 const navItems = [
   { key: "tymy", label: "TÝMY", icon: "/icons/tymy.svg" },
@@ -37,7 +37,7 @@ function SocialLink({
 }: {
   href: string;
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <a
@@ -62,6 +62,23 @@ function SocialLink({
     >
       {children}
     </a>
+  );
+}
+
+function SectionTitle({ title }: { title: string }) {
+  return (
+    <h2
+      style={{
+        fontSize: 28,
+        fontWeight: 900,
+        textTransform: "uppercase",
+        letterSpacing: 1,
+        marginTop: 0,
+        marginBottom: 18,
+      }}
+    >
+      {title}
+    </h2>
   );
 }
 
@@ -103,7 +120,7 @@ function HeroSection() {
           padding: "0 20px",
         }}
       >
-        Hero video
+        Velké video
       </div>
 
       <div
@@ -139,6 +156,7 @@ function HeroSection() {
           </div>
 
           <h1
+            className="clubFont"
             style={{
               margin: 0,
               fontSize: "clamp(34px, 6vw, 68px)",
@@ -192,7 +210,7 @@ function HeroSection() {
             Další zápas
           </div>
 
-          <div style={{ fontSize: 22, fontWeight: 800, marginBottom: 8 }}>
+          <div className="clubFont" style={{ fontSize: 22, fontWeight: 800, marginBottom: 8 }}>
             Lovci vs. Karviná
           </div>
 
@@ -235,16 +253,19 @@ function HeroSection() {
 function NewsSection() {
   const articles = [
     {
-      title: "Lovci zvládli dramatický duel a berou důležité body",
+      title: "Zlepšený druhý poločas přinesl Lovcům další vítězství",
       category: "A-tým",
+      date: "7. 2. 2026",
     },
     {
       title: "Dorostenci pokračují v jarní části soutěže",
       category: "Mládež",
+      date: "4. 2. 2026",
     },
     {
       title: "Rozhovor s trenérem před šlágrem kola",
       category: "Klub",
+      date: "2. 2. 2026",
     },
   ];
 
@@ -261,39 +282,41 @@ function NewsSection() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          gridTemplateColumns: "minmax(0, 2fr) minmax(280px, 1fr)",
           gap: 20,
         }}
       >
-        {articles.map((article) => (
-          <article
-            key={article.title}
+        <article
+          style={{
+            borderRadius: 20,
+            overflow: "hidden",
+            border: "1px solid rgba(186,210,237,0.18)",
+            background: "rgba(10,14,28,0.74)",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.16)",
+            minHeight: 340,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
             style={{
-              borderRadius: 20,
-              overflow: "hidden",
-              border: "1px solid rgba(186,210,237,0.18)",
-              background: "rgba(10,14,28,0.74)",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.16)",
+              height: 210,
+              background:
+                "linear-gradient(135deg, rgba(90,140,230,0.7), rgba(20,28,70,0.85))",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "rgba(0,220,255,0.75)",
+              fontSize: 34,
+              fontWeight: 700,
+              textTransform: "uppercase",
             }}
           >
-            <div
-              style={{
-                height: 180,
-                background:
-                  "linear-gradient(135deg, rgba(186,210,237,0.22), rgba(255,255,255,0.04))",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "rgba(255,255,255,0.2)",
-                fontSize: 24,
-                fontWeight: 900,
-                textTransform: "uppercase",
-              }}
-            >
-              článek
-            </div>
+            Fotka z článku
+          </div>
 
-            <div style={{ padding: 18 }}>
+          <div style={{ padding: 22, flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div>
               <div
                 style={{
                   fontSize: 12,
@@ -304,21 +327,154 @@ function NewsSection() {
                   marginBottom: 10,
                 }}
               >
-                {article.category}
+                {articles[0].category}
               </div>
 
               <h3
+                className="clubFont"
                 style={{
                   margin: 0,
-                  fontSize: 20,
-                  lineHeight: 1.35,
+                  fontSize: 34,
+                  lineHeight: 1.15,
                 }}
               >
-                {article.title}
+                {articles[0].title}
               </h3>
             </div>
-          </article>
-        ))}
+
+            <div
+              style={{
+                marginTop: 18,
+                textAlign: "right",
+                color: "rgba(255,255,255,0.85)",
+                fontWeight: 700,
+              }}
+            >
+              {articles[0].date}
+            </div>
+          </div>
+        </article>
+
+        <div style={{ display: "grid", gap: 14 }}>
+          {articles.slice(1).map((article) => (
+            <article
+              key={article.title}
+              style={{
+                borderRadius: 18,
+                overflow: "hidden",
+                border: "1px solid rgba(186,210,237,0.18)",
+                background: "rgba(10,14,28,0.74)",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.16)",
+                minHeight: 162,
+              }}
+            >
+              <div
+                style={{
+                  height: 92,
+                  background:
+                    "linear-gradient(135deg, rgba(90,140,230,0.7), rgba(20,28,70,0.85))",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "rgba(0,220,255,0.75)",
+                  fontSize: 20,
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                }}
+              >
+                Fotka z článku
+              </div>
+
+              <div style={{ padding: 14 }}>
+                <div
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 800,
+                    color: "#bad2ed",
+                    textTransform: "uppercase",
+                    letterSpacing: 1,
+                    marginBottom: 6,
+                  }}
+                >
+                  {article.category}
+                </div>
+
+                <h3
+                  className="clubFont"
+                  style={{
+                    margin: 0,
+                    fontSize: 18,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {article.title}
+                </h3>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MatchBar() {
+  return (
+    <section
+      style={{
+        maxWidth: 1180,
+        margin: "0 auto",
+        padding: "0 20px 34px",
+      }}
+    >
+      <div
+        style={{
+          border: "3px solid rgba(220,235,255,0.85)",
+          background: "rgba(18,24,52,0.88)",
+          padding: "18px 26px",
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          gap: 24,
+          alignItems: "center",
+        }}
+      >
+        <div
+          className="clubFont"
+          style={{
+            fontSize: 28,
+            textAlign: "center",
+            lineHeight: 1.1,
+          }}
+        >
+          HK FCC Město Lovosice
+        </div>
+
+        <div
+          className="clubFont"
+          style={{
+            fontSize: 34,
+            textAlign: "center",
+            lineHeight: 1.1,
+            color: "#dce7ff",
+          }}
+        >
+          25. března
+          <br />
+          18:00
+        </div>
+
+        <div
+          className="clubFont"
+          style={{
+            fontSize: 28,
+            textAlign: "center",
+            lineHeight: 1.1,
+          }}
+        >
+          Talent tým
+          <br />
+          Plzeňského kraje
+        </div>
       </div>
     </section>
   );
@@ -326,88 +482,198 @@ function NewsSection() {
 
 function StandingsTable() {
   const rows = [
+    { position: 1, team: "HCB Karviná", played: 21, wins: 19, draws: 0, losses: 2, score: "702:543", points: 38 },
+    { position: 2, team: "Talent tým Plzeňského kraje", played: 20, wins: 16, draws: 1, losses: 3, score: "655:530", points: 33 },
+    { position: 3, team: "HC Dukla Praha", played: 21, wins: 15, draws: 1, losses: 5, score: "650:590", points: 31 },
+    { position: 4, team: "HK FCC Město Lovosice", played: 20, wins: 14, draws: 1, losses: 5, score: "620:570", points: 29 },
+    { position: 5, team: "HC ROBE Zubří", played: 20, wins: 12, draws: 2, losses: 6, score: "601:588", points: 26 },
+    { position: 6, team: "SKKP Handball Brno", played: 20, wins: 10, draws: 1, losses: 9, score: "590:600", points: 21 },
+    { position: 7, team: "Frýdek-Místek", played: 20, wins: 8, draws: 2, losses: 10, score: "580:610", points: 18 },
+    { position: 8, team: "Nové Veselí", played: 20, wins: 7, draws: 1, losses: 12, score: "560:615", points: 15 },
+    { position: 9, team: "Maloměřice", played: 20, wins: 6, draws: 1, losses: 13, score: "540:620", points: 13 },
+    { position: 10, team: "Jičín", played: 20, wins: 5, draws: 2, losses: 13, score: "535:625", points: 12 },
+    { position: 11, team: "Brno", played: 20, wins: 4, draws: 1, losses: 15, score: "520:640", points: 9 },
+    { position: 12, team: "Strakonice", played: 20, wins: 3, draws: 0, losses: 17, score: "500:660", points: 6 },
+  ];
+
+  return (
+    <section
+      style={{
+        background: "rgba(10,14,28,0.78)",
+        border: "1px solid rgba(186,210,237,0.22)",
+        borderRadius: 18,
+        overflow: "hidden",
+        boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
+      }}
+    >
+      <div style={{ padding: "22px 22px 10px" }}>
+        <SectionTitle title="Chance extraliga" />
+      </div>
+
+      <div style={{ overflowX: "auto" }}>
+        <table
+          style={{
+            width: "100%",
+            minWidth: 700,
+            borderCollapse: "collapse",
+            color: "white",
+            fontSize: 14,
+          }}
+        >
+          <thead>
+            <tr style={{ background: "rgba(255,255,255,0.05)" }}>
+              <th style={thStyle}>#</th>
+              <th style={{ ...thStyle, textAlign: "left" }}>Tým</th>
+              <th style={thStyle}>Z</th>
+              <th style={thStyle}>V</th>
+              <th style={thStyle}>R</th>
+              <th style={thStyle}>P</th>
+              <th style={thStyle}>Skóre</th>
+              <th style={thStyle}>B</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {rows.map((row) => {
+              const isLovci = row.team.includes("Lovosice");
+
+              return (
+                <tr
+                  key={row.team}
+                  style={{
+                    borderTop: "1px solid rgba(255,255,255,0.08)",
+                    background: isLovci ? "rgba(186,210,237,0.12)" : "transparent",
+                  }}
+                >
+                  <td style={tdStyle}>{row.position}</td>
+                  <td
+                    style={{
+                      ...tdStyle,
+                      textAlign: "left",
+                      fontWeight: 700,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {row.team}
+                  </td>
+                  <td style={tdStyle}>{row.played}</td>
+                  <td style={tdStyle}>{row.wins}</td>
+                  <td style={tdStyle}>{row.draws}</td>
+                  <td style={tdStyle}>{row.losses}</td>
+                  <td style={tdStyle}>{row.score}</td>
+                  <td style={{ ...tdStyle, fontWeight: 800 }}>{row.points}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function StatsBlock() {
+  const players = [
     {
-      position: 1,
-      team: "HCB Karviná",
-      played: 21,
-      wins: 19,
-      draws: 0,
-      losses: 2,
-      score: "702:543",
-      points: 38,
+      name: "KUPA",
+      matches: 20,
+      goals: 100,
+      image: "/images/player-placeholder.png",
     },
     {
-      position: 2,
-      team: "Talent tým Plzeňského kraje",
-      played: 20,
-      wins: 16,
-      draws: 1,
-      losses: 3,
-      score: "655:530",
-      points: 33,
+      name: "CHOTĚBORSKÝ",
+      matches: 20,
+      goals: 100,
+      image: "/images/player-placeholder.png",
     },
     {
-      position: 3,
-      team: "HC Dukla Praha",
-      played: 21,
-      wins: 15,
-      draws: 1,
-      losses: 5,
-      score: "650:590",
-      points: 31,
-    },
-    {
-      position: 4,
-      team: "HK FCC Město Lovosice",
-      played: 20,
-      wins: 14,
-      draws: 1,
-      losses: 5,
-      score: "620:570",
-      points: 29,
-    },
-    {
-      position: 5,
-      team: "HC ROBE Zubří",
-      played: 20,
-      wins: 12,
-      draws: 2,
-      losses: 6,
-      score: "601:588",
-      points: 26,
-    },
-    {
-      position: 6,
-      team: "SKKP Handball Brno",
-      played: 20,
-      wins: 10,
-      draws: 1,
-      losses: 9,
-      score: "590:600",
-      points: 21,
-    },
-    {
-      position: 7,
-      team: "Frýdek-Místek",
-      played: 20,
-      wins: 8,
-      draws: 2,
-      losses: 10,
-      score: "580:610",
-      points: 18,
-    },
-    {
-      position: 8,
-      team: "Nové Veselí",
-      played: 20,
-      wins: 7,
-      draws: 1,
-      losses: 12,
-      score: "560:615",
-      points: 15,
+      name: "HORÁK",
+      matches: 20,
+      goals: 100,
+      image: "/images/player-placeholder.png",
     },
   ];
 
+  return (
+    <section
+      style={{
+        background: "rgba(10,14,28,0.78)",
+        border: "1px solid rgba(186,210,237,0.22)",
+        borderRadius: 18,
+        overflow: "hidden",
+        boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
+        padding: 22,
+        height: "100%",
+      }}
+    >
+      <SectionTitle title="Statistiky" />
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gap: 18,
+        }}
+      >
+        {players.map((player) => (
+          <div
+            key={player.name}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              padding: 16,
+              borderRadius: 16,
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+            }}
+          >
+            <img
+              src={player.image}
+              alt={player.name}
+              style={{
+                width: 84,
+                height: 84,
+                objectFit: "cover",
+                borderRadius: 12,
+                background: "rgba(186,210,237,0.12)",
+                flexShrink: 0,
+              }}
+            />
+
+            <div style={{ flex: 1 }}>
+              <div
+                className="clubFont"
+                style={{
+                  fontSize: 22,
+                  fontWeight: 900,
+                  lineHeight: 1.1,
+                  marginBottom: 10,
+                }}
+              >
+                {player.name}
+              </div>
+
+              <div
+                style={{
+                  color: "rgba(255,255,255,0.82)",
+                  lineHeight: 1.6,
+                  fontSize: 15,
+                }}
+              >
+                {player.matches} zápasů
+                <br />
+                {player.goals} gólů
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function StandingsAndStats() {
   return (
     <section
       style={{
@@ -416,98 +682,18 @@ function StandingsTable() {
         padding: "20px 20px 70px",
       }}
     >
-      <SectionTitle title="Tabulka extraligy" />
-
       <div
         style={{
-          background: "rgba(10,14,28,0.78)",
-          border: "1px solid rgba(186,210,237,0.22)",
-          borderRadius: 18,
-          overflow: "hidden",
-          boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: 24,
+          alignItems: "start",
         }}
       >
-        <div style={{ overflowX: "auto" }}>
-          <table
-            style={{
-              width: "100%",
-              minWidth: 760,
-              borderCollapse: "collapse",
-              color: "white",
-              fontSize: 14,
-            }}
-          >
-            <thead>
-              <tr style={{ background: "rgba(255,255,255,0.05)" }}>
-                <th style={thStyle}>#</th>
-                <th style={{ ...thStyle, textAlign: "left" }}>Tým</th>
-                <th style={thStyle}>Z</th>
-                <th style={thStyle}>V</th>
-                <th style={thStyle}>R</th>
-                <th style={thStyle}>P</th>
-                <th style={thStyle}>Skóre</th>
-                <th style={thStyle}>B</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {rows.map((row) => {
-                const isLovci = row.team.includes("Lovosice");
-
-                return (
-                  <tr
-                    key={row.team}
-                    style={{
-                      borderTop: "1px solid rgba(255,255,255,0.08)",
-                      background: isLovci
-                        ? "rgba(186,210,237,0.12)"
-                        : "transparent",
-                    }}
-                  >
-                    <td style={tdStyle}>{row.position}</td>
-                    <td
-                      style={{
-                        ...tdStyle,
-                        textAlign: "left",
-                        fontWeight: 700,
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {row.team}
-                    </td>
-                    <td style={tdStyle}>{row.played}</td>
-                    <td style={tdStyle}>{row.wins}</td>
-                    <td style={tdStyle}>{row.draws}</td>
-                    <td style={tdStyle}>{row.losses}</td>
-                    <td style={tdStyle}>{row.score}</td>
-                    <td style={{ ...tdStyle, fontWeight: 800 }}>
-                      {row.points}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <StandingsTable />
+        <StatsBlock />
       </div>
     </section>
-  );
-}
-
-function SectionTitle({ title }: { title: string }) {
-  return (
-    <h2
-      style={{
-        fontSize: 28,
-        fontWeight: 900,
-        textTransform: "uppercase",
-        letterSpacing: 1,
-        marginTop: 0,
-        marginBottom: 18,
-      }}
-    >
-      {title}
-    </h2>
   );
 }
 
@@ -575,15 +761,17 @@ export default function Home() {
                 }}
               />
 
-<div
-  className="clubFont"
-  style={{
-    fontSize: 30,
-    fontWeight: 800,
-  }}
->
-  LOVCI LOVOSICE
-</div>
+              <div
+                className="clubFont"
+                style={{
+                  fontSize: "clamp(22px, 3vw, 30px)",
+                  fontWeight: 900,
+                  letterSpacing: 1,
+                  textTransform: "uppercase",
+                }}
+              >
+                Lovci Lovosice
+              </div>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -663,7 +851,8 @@ export default function Home() {
 
       <HeroSection />
       <NewsSection />
-      <StandingsTable />
+      <MatchBar />
+      <StandingsAndStats />
     </main>
   );
 }
