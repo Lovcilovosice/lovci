@@ -123,6 +123,7 @@ function getYouTubeEmbedUrl(url: string) {
 function HeroSection() {
   return (
     <section
+      className="heroSection"
       style={{
         position: "relative",
         minHeight: 520,
@@ -162,6 +163,7 @@ function HeroSection() {
       </div>
 
       <div
+        className="heroContentGrid"
         style={{
           position: "relative",
           zIndex: 1,
@@ -194,7 +196,7 @@ function HeroSection() {
           </div>
 
           <h1
-            className="clubFont"
+            className="clubFont heroTitle"
             style={{
               margin: 0,
               fontSize: "clamp(34px, 6vw, 68px)",
@@ -208,6 +210,7 @@ function HeroSection() {
           </h1>
 
           <p
+            className="heroDescription"
             style={{
               marginTop: 18,
               marginBottom: 0,
@@ -223,6 +226,7 @@ function HeroSection() {
         </div>
 
         <div
+          className="heroMatchCard"
           style={{
             minWidth: 280,
             maxWidth: 360,
@@ -321,10 +325,9 @@ function NewsSection() {
       <SectionTitle title="Aktuálně" />
 
       <div
+        className="newsGrid"
         style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 2fr) minmax(280px, 1fr)",
-          gap: 20,
+          width: "100%",
         }}
       >
         <article
@@ -380,7 +383,7 @@ function NewsSection() {
               </div>
 
               <h3
-                className="clubFont"
+                className="clubFont newsLeadTitle"
                 style={{
                   margin: 0,
                   fontSize: 34,
@@ -477,18 +480,15 @@ function MatchBar() {
       }}
     >
       <div
+        className="matchBarGrid"
         style={{
           border: "3px solid rgba(220,235,255,0.85)",
           background: "rgba(18,24,52,0.88)",
           padding: "18px 26px",
-          display: "grid",
-          gridTemplateColumns: "1fr auto 1fr",
-          gap: 24,
-          alignItems: "center",
         }}
       >
         <div
-          className="clubFont"
+          className="clubFont matchTeam"
           style={{
             fontSize: 28,
             textAlign: "center",
@@ -499,7 +499,7 @@ function MatchBar() {
         </div>
 
         <div
-          className="clubFont"
+          className="clubFont matchDate"
           style={{
             fontSize: 34,
             textAlign: "center",
@@ -513,7 +513,7 @@ function MatchBar() {
         </div>
 
         <div
-          className="clubFont"
+          className="clubFont matchTeam"
           style={{
             fontSize: 28,
             textAlign: "center",
@@ -778,11 +778,9 @@ function StatsBlock() {
       >
         {players.map((player) => (
           <div
+            className="statsPlayerCard"
             key={player.name}
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 16,
               padding: 16,
               borderRadius: 16,
               background: "rgba(255,255,255,0.04)",
@@ -844,11 +842,9 @@ function StandingsAndStats() {
       }}
     >
       <div
+        className="standingsStatsGrid"
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: 24,
-          alignItems: "start",
+          width: "100%",
         }}
       >
         <StandingsTable />
@@ -873,11 +869,9 @@ function LovciTVSection() {
       <SectionTitle title="Lovci TV" />
 
       <div
+        className="videoGrid"
         style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 2fr) minmax(280px, 1fr)",
-          gap: 24,
-          alignItems: "stretch",
+          width: "100%",
         }}
       >
         <div
@@ -1031,6 +1025,7 @@ const tdStyle: CSSProperties = {
 export default function Home() {
   return (
     <main
+      className="homePage"
       style={{
         minHeight: "100vh",
         backgroundImage:
@@ -1043,6 +1038,7 @@ export default function Home() {
       }}
     >
       <header
+        className="homeHeader"
         style={{
           position: "sticky",
           top: 0,
@@ -1061,15 +1057,12 @@ export default function Home() {
           }}
         >
           <div
+            className="homeHeaderTop"
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 20,
-              flexWrap: "wrap",
+              width: "100%",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <div className="homeHeaderBrand">
               <img
                 src="/images/logo-lovci.png"
                 alt="Lovci Lovosice"
@@ -1077,6 +1070,7 @@ export default function Home() {
                   width: 60,
                   height: 60,
                   objectFit: "contain",
+                  flexShrink: 0,
                 }}
               />
 
@@ -1087,13 +1081,14 @@ export default function Home() {
                   fontWeight: 900,
                   letterSpacing: 1,
                   textTransform: "uppercase",
+                  lineHeight: 1,
                 }}
               >
                 Lovci Lovosice
               </div>
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div className="homeHeaderActions">
               <SocialLink href="#" label="Facebook">
                 f
               </SocialLink>
@@ -1127,22 +1122,15 @@ export default function Home() {
           </div>
 
           <nav
+            className="homeNav"
             style={{
-              marginTop: 16,
-              display: "flex",
-              justifyContent: "center",
+              width: "100%",
             }}
           >
             <div
+              className="homeNavList"
               style={{
-                display: "flex",
-                gap: 24,
-                fontSize: 13,
-                letterSpacing: 1,
-                textTransform: "uppercase",
-                alignItems: "center",
-                justifyContent: "center",
-                flexWrap: "wrap",
+                width: "100%",
               }}
             >
               {navItems.map((item) => (

@@ -23,6 +23,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
 }
 
 /* ===== LOVCI FONT ===== */
@@ -40,3 +41,172 @@ body {
   letter-spacing: 1px;
 }
 
+.homePage {
+  overflow-x: clip;
+}
+
+.homeHeader {
+  width: 100%;
+}
+
+.homeHeaderTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.homeHeaderBrand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.homeHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.homeNav {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.homeNavList {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroContentGrid,
+.newsGrid,
+.matchBarGrid,
+.videoGrid {
+  width: 100%;
+}
+
+.newsGrid,
+.videoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 20px;
+}
+
+.matchBarGrid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.standingsStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.statsPlayerCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .homePage {
+    background-attachment: scroll !important;
+  }
+
+  .newsGrid,
+  .videoGrid,
+  .standingsStatsGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .matchBarGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 720px) {
+  .homeHeader {
+    padding: 14px 16px 12px !important;
+  }
+
+  .homeHeaderTop {
+    align-items: flex-start;
+  }
+
+  .homeHeaderBrand {
+    width: 100%;
+  }
+
+  .homeHeaderActions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .homeNav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .homeNavList {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    min-width: max-content;
+    padding-right: 20px;
+  }
+
+  .heroSection {
+    min-height: auto !important;
+    padding: 28px 16px !important;
+  }
+
+  .heroTitle {
+    font-size: clamp(30px, 12vw, 46px) !important;
+  }
+
+  .heroDescription {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+
+  .heroMatchCard {
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+
+  .newsLeadTitle {
+    font-size: 26px !important;
+  }
+
+  .matchTeam {
+    font-size: 22px !important;
+  }
+
+  .matchDate {
+    font-size: 28px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .statsPlayerCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
