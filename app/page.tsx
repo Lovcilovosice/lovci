@@ -132,8 +132,22 @@ function HeroSection() {
         justifyContent: "center",
         padding: "40px 20px",
         overflow: "hidden",
+        background: "#0b1020",
       }}
     >
+      <video
+        className="heroVideo"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/images/hero-home-poster.jpg"
+        aria-hidden="true"
+      >
+        <source src="/videos/hero-home.mp4" type="video/mp4" />
+      </video>
+
       <div
         style={{
           position: "absolute",
@@ -142,25 +156,6 @@ function HeroSection() {
             "linear-gradient(180deg, rgba(8,10,18,0.45) 0%, rgba(8,10,18,0.62) 45%, rgba(8,10,18,0.88) 100%)",
         }}
       />
-
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "rgba(255,255,255,0.14)",
-          fontSize: "clamp(38px, 7vw, 88px)",
-          fontWeight: 900,
-          letterSpacing: 3,
-          textTransform: "uppercase",
-          textAlign: "center",
-          padding: "0 20px",
-        }}
-      >
-        Velké video
-      </div>
 
       <div
         className="heroContentGrid"

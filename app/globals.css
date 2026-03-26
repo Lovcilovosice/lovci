@@ -96,6 +96,15 @@ body {
   width: 100%;
 }
 
+.heroVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
 .newsGrid,
 .videoGrid {
   display: grid;
@@ -177,6 +186,10 @@ body {
     padding: 28px 16px !important;
   }
 
+  .heroVideo {
+    object-position: center center;
+  }
+
   .heroTitle {
     font-size: clamp(30px, 12vw, 46px) !important;
   }
@@ -208,5 +221,11 @@ body {
   .statsPlayerCard {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroVideo {
+    display: none;
   }
 }
